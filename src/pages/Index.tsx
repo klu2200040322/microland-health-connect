@@ -5,6 +5,7 @@ import PatientDashboard from "@/components/PatientDashboard";
 import SymptomAnalyzer from "@/components/SymptomAnalyzer";
 import SchedulingHub from "@/components/SchedulingHub";
 import DataInsights from "@/components/DataInsights";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -27,9 +28,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar activeTab={activeTab} onNavigate={setActiveTab} />
-      {renderContent()}
+      <div className="flex-1">{renderContent()}</div>
+      <Footer onNavigate={setActiveTab} />
     </div>
   );
 };
