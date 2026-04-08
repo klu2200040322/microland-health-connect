@@ -1,16 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import PatientDashboard from "@/components/PatientDashboard";
+import SymptomAnalyzer from "@/components/SymptomAnalyzer";
+import SchedulingHub from "@/components/SchedulingHub";
+import DataInsights from "@/components/DataInsights";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [activeTab, setActiveTab] = useState("home");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "home":
+        return <HeroSection onNavigate={setActiveTab} />;
+      case "dashboard":
+        return <PatientDashboard />;
+      case "symptom-analyzer":
+        return <SymptomAnalyzer />;
+      case "scheduling":
+        return <SchedulingHub />;
+      case "insights":
+        return <DataInsights />;
+      default:
+        return <HeroSection onNavigate={setActiveTab} />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <Navbar activeTab={activeTab} onNavigate={setActiveTab} />
+      {renderContent()}
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
